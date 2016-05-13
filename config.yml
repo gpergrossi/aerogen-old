@@ -1,0 +1,260 @@
+biomes:
+    # default is both an example of how to configure a biome, and the default values used for any biome that is not configured.
+    default:
+        general:
+            # Chance of an island to spawn in this biome per chunk
+            chance: 0.1
+            
+            # Minimum and Maximum size are self explanatory
+            minSize: 32
+            maxSize: 256
+            
+            # Island size is rolled as a random number from 0 to 1, this 
+            # number is taken to the sizeWeightExponent power and then 
+            # multiplied by the range (max - min). Finally, the minimum is 
+            # added on, resulting in a value from minimumSize to 
+            # maximumSize, weighted more closely to minimum.
+            sizeWeightExponent: 6.0
+            
+            # The regularity percentages are used in an equation to find 
+            # the second dimension related to the first: 
+            # bredth = (regularity)*length + (1.0-regularity)*bredth
+            squareRegularity: 0.5
+            
+            # The minimum and maximum depth of the island (not altitude)
+            minDepth: 28
+            maxDepth: 128
+            
+            # Depth ratio is used to define the normal ratio of island depth
+            # to island width.
+            depthRatio: 0.4
+            
+            # Scales the depth between a random depth between min and max, 
+            # and a calculated depth of islandLength*depthRatio
+            depthRegularity: 0.8
+            
+            # Spawning altitude of islands in this category
+            minAltitude: 0.0
+            maxAltitude: 1.0
+            
+        # These values are a block ID
+        composition:
+            rockMaterial: 1
+            soilMaterial: 3
+            surfaceMaterial: 2
+            lakeBedMaterial: 12
+            lakeBedMudMaterial: 3
+            fluidMaterial: 8
+            snowMaterial: 78
+            
+        terrain:
+            # Roughness is half the islands surface noise amplitude
+            roughness: 8.0
+            
+            # Frequency is the frequency of surface noise, a frequency of
+            # 1.0 is once per chunk
+            frequency: 0.5
+            
+            # Should the island generate cliffs, if so heights
+            cliffs: false
+            minCliffHeight: 4
+            maxCliffHeight: 8
+            
+            # Percentage depth where soil gives way to rock
+            soilDepth: 0.3
+            
+            # Chance of the island hosting a lake
+            lakeChance: 0.1
+            
+            # Chance, per surface tile, to spawn a water pond
+            waterPondChance: 0.0002
+            
+            # Chance, per rock exposed to cave above, to spawn a lava pond
+            lavaPondChance: 0.0001
+            
+            # Should snow settle on the island after generation?
+            snow: false
+            
+            # Chance the island has a cave system
+            caveChance: 1.0
+            
+            # Chance of lava and water falls, rolled for each stone block  
+            # with exactly one air adjacent to it. Lava only spawns 
+            # underground
+            waterFallDensity: 0.0005
+            lavaFallDensity: 0.0005
+            
+        plants:
+            # treeDensity is the chance of a tree spawning per surface block
+            treeDensity: 0.005
+            
+            # once a tree is rolled, the type is decided from the 
+            # percentages of the tree types
+            treeTypes:
+                oak: 0.8
+                tallOak: 0.2
+                birch: 0.0
+                redwood: 0.0
+                tallRedwood: 0.0
+                jungleTree: 0.0
+                jungleBush: 0.0
+                smallJungleTree: 0.0
+                swampTree: 0.0
+                bigBrownMushroom: 0.0
+                bigRedMushroom: 0.0
+                
+            # Chance to spawn a reed cluster per sand or grass block that 
+            # is adjacent to water
+            reedDensity: 0.0
+            readClusterMin: 2
+            readClusterMax: 5
+            
+            # Chance to place a cactus per sand block
+            cactusDensity: 0.0
+            
+            # Chance to place a shrub per sand or grass block, tallGrass 
+            # and ferns will only spawn on grass, driedBush will only 
+            # spawn on sand.
+            shrubDensity: 0.02
+            shrubTypes:
+                driedBush: 0.0
+                tallGrass: 0.7
+                fern: 0.3
+                
+            # Chance per surface tile to spawn a flow cluster
+            flowerDensity: 0.0
+            flowerClusterRed: 0.5
+            flowerClusterMin: 3
+            flowerClusterMax: 5
+            
+            # Chance per cave floor tile to spawn a mushroom cluster
+            mushroomDensity: 0.0
+            mushroomClusterBrown: 0.5
+            mushroomClusterMin: 3
+            mushroomClusterMax: 7
+            
+            # Chance per surface tile to spawn a watermelon cluster
+            watermelonDensity: 0.0
+            watermelonClusterMin: 3
+            watermelonClusterMax: 5
+            
+            # Chance per surface tile to spawn a pumpkin cluster
+            pumpkinDensity: 0.0
+            pumpkinClusterMin: 3
+            pumpkinClusterMax: 5
+            
+        caves:
+            # Percentage of the island volume to be converted to cave (actual amount may vary)
+            cavePercentage: 0.1
+            
+            # Max radius of a single part of the cave system
+            maxCaveRadius: 4.0
+            
+            # Min radius of a single part of the cave system
+            minCaveRadius: 1.8
+            
+            # Maximum amount of change in radius per 2 block segment of the cave
+            maxCaveRadiusChange: 0.3
+        
+        ores:
+            # The name of the ore group is unimportant, it is required, but it can be named anything.
+            # The important part of the ores section is that there are groups containing a block id, chance, depth, and vein sizes.
+            # Ore spawns are rolled in the order provided below. Using the ore vein system, you can do some cool things, like populate 
+            # stone in the sandstone of the desert, and then later populate ores in the stone, thus creating desert geodes.
+            #
+            # If you leave out one of the attributes it is replaced with the default value listed below:
+            # blockID: 0
+            # replaces: 1
+            # chance: 0.0
+            # minimumDepth: 0.0
+            # maximumDepth: 1.0
+            # minimumVeinSize: 3
+            # maximumVeinSize: 9
+            gravel:
+                blockID: 13
+                replaces: 1
+                chance: 0.002
+                minDepth: 0.0
+                maxDepth: 1.0
+                minVeinSize: 5 
+                maxVeinSize: 16
+            coal:
+                blockID: 16
+                replaces: 1
+                chance: 0.003
+                minDepth: 0.2
+                maxDepth: 1.0
+                minVeinSize: 3 
+                maxVeinSize: 9
+            iron:
+                blockID: 15
+                replaces: 1
+                chance: 0.003
+                minDepth: 0.2
+                maxDepth: 1.0
+                minVeinSize: 3 
+                maxVeinSize: 9
+            gold:
+                blockID: 14
+                replaces: 1
+                chance: 0.0005
+                minDepth: 0.6
+                maxDepth: 1.0
+                minVeinSize: 3 
+                maxVeinSize: 6
+            lapis:
+                blockID: 73
+                replaces: 1
+                chance: 0.0005
+                minDepth: 0.7
+                maxDepth: 1.0
+                minVeinSize: 5 
+                maxVeinSize: 7
+            redstone:
+                blockID: 21
+                replaces: 1
+                chance: 0.0005
+                minDepth: 0.7
+                maxDepth: 1.0
+                minVeinSize: 3 
+                maxVeinSize: 6
+            diamond:
+                blockID: 56
+                replaces: 1
+                chance: 0.0005
+                minDepth: 0.9
+                maxDepth: 1.0
+                minVeinSize: 2 
+                maxVeinSize: 5
+    beach:
+      
+    desert:
+    desertHills:
+    extremeHills:
+    forest:
+    forestHills:
+    frozenOcean:
+    frozenRiver:
+    hell:
+    iceDesert:
+    iceMountains:
+    icePlains:
+    jungle:
+    jungleHills:
+    mushroomIsland:
+    mushroomShore:
+    ocean:
+    plains:
+    rainforest:
+    river:
+    savanna:
+    seasonalForest:
+    shrubland:
+    sky:
+    smallMountains:
+    swampland:
+    taiga:
+    taigaHills:
+    tundra:
+    
+    

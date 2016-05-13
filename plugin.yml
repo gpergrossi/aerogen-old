@@ -1,0 +1,7 @@
+name: AeroGen
+version: 1.5.2
+description: Generates an entirely different kind of world.
+author: MortusNegati
+
+load: STARTUP
+main: aero.AeroGen
